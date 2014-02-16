@@ -17,11 +17,11 @@ CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/libc-trim.so.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=libc-trim
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/libc-trim
+CND_ARTIFACT_NAME_Release=liblibc-trim.so
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/liblibc-trim.so
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=libc-trim.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/libc-trim.tar
+CND_PACKAGE_NAME_Release=libc-trim.so.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/libc-trim.so.tar
 #
 # include compiler specific variables
 #
