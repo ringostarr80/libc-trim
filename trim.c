@@ -3,18 +3,34 @@
 #include <ctype.h>
 #include <stdlib.h>
 
+#ifndef TRIM_H
 #include "trim.h"
+#endif
 
+// standard trim functions
 char* ltrim(char* src) {
+	return ltrim_chars(src, WHITESPACES);
+}
+
+char* ltrim_chars(char* src, const char trim_chars[]) {
 	char* trimmed;
-	int i = 0, string_length = strlen(src), first_non_space_character_index = 0;
-	int non_space_found = 0;
+	int i = 0, j = 0, string_length = strlen(src), first_non_space_character_index = 0;
+	int non_space_found = 0, trim_char_found = 0;
 	
-	for(i = 0; i < string_length; i++) {
-		first_non_space_character_index = i;
-		if (!isspace(src[i])) {
-			non_space_found = 1;
-			break;
+	if (sizeof(trim_chars) > 0) {
+		for(i = 0; i < string_length; i++) {
+			first_non_space_character_index = i;
+			trim_char_found = 0;
+			for(j = 0; j < sizeof(trim_chars); j++) {
+				if (src[i] == trim_chars[j]) {
+					trim_char_found = 1;
+					break;
+				}
+			}
+			if (!trim_char_found) {
+				non_space_found = 1;
+				break;
+			}
 		}
 	}
 	if (!non_space_found) {
@@ -33,15 +49,28 @@ char* ltrim(char* src) {
 }
 
 char* rtrim(char* src) {
+	return rtrim_chars(src, WHITESPACES);
+}
+
+char* rtrim_chars(char* src, const char trim_chars[]) {
 	char* trimmed;
-	int i = 0, string_length = strlen(src), last_non_space_character_index = 0;
-	int non_space_found = 0;
+	int i = 0, j = 0, string_length = strlen(src), last_non_space_character_index = 0;
+	int non_space_found = 0, trim_char_found = 0;
 	
-	for(i = string_length - 1; i >= 0; i--) {
-		last_non_space_character_index = i;
-		if (!isspace(src[i])) {
-			non_space_found = 1;
-			break;
+	if (sizeof(trim_chars) > 0) {
+		for(i = string_length - 1; i >= 0; i--) {
+			last_non_space_character_index = i;
+			trim_char_found = 0;
+			for(j = 0; j < sizeof(trim_chars); j++) {
+				if (src[i] == trim_chars[j]) {
+					trim_char_found = 1;
+					break;
+				}
+			}
+			if (!trim_char_found) {
+				non_space_found = 1;
+				break;
+			}
 		}
 	}
 	if (!non_space_found) {
@@ -60,19 +89,38 @@ char* rtrim(char* src) {
 }
 
 char* trim(char* src) {
-	char* ltrimmed = ltrim(src);
-	char* trimmed = rtrim(ltrimmed);
+	return trim_chars(src, WHITESPACES);
+}
+
+char* trim_chars(char* src, const char trim_chars[]) {
+	char* ltrimmed = ltrim_chars(src, trim_chars);
+	char* trimmed = rtrim_chars(ltrimmed, trim_chars);
 	free(ltrimmed);
 	return trimmed;
 }
 
 void ltrim_ref(char src[]) {
-	int i = 0, string_length = strlen(src), first_non_space_character_index = 0;
-	int non_space_found = 0;
+	ltrim_chars_ref(src, WHITESPACES);
+}
+
+void ltrim_chars_ref(char src[], const char trim_chars[]) {
+	int i = 0, j = 0, string_length = strlen(src), first_non_space_character_index = 0;
+	int non_space_found = 0, trim_char_found = 0;
+	
+	if (sizeof(trim_chars) == 0) {
+		return;
+	} // if (sizeof(trim_chars) == 0)
 	
 	for(i = 0; i < string_length; i++) {
 		first_non_space_character_index = i;
-		if (!isspace(src[i])) {
+		trim_char_found = 0;
+		for(j = 0; j < sizeof(trim_chars); j++) {
+			if (src[i] == trim_chars[j]) {
+				trim_char_found = 1;
+				break;
+			}
+		}
+		if (!trim_char_found) {
 			non_space_found = 1;
 			break;
 		}
@@ -94,11 +142,26 @@ void ltrim_ref(char src[]) {
 }
 
 void rtrim_ref(char src[]) {
-	int i = 0, string_length = strlen(src);
-	int non_space_found = 0;
+	rtrim_chars_ref(src, WHITESPACES);
+}
+
+void rtrim_chars_ref(char src[], const char trim_chars[]) {
+	int i = 0, j = 0, string_length = strlen(src);
+	int non_space_found = 0, trim_char_found = 0;
+	
+	if (sizeof(trim_chars) == 0) {
+		return;
+	}
 	
 	for(i = string_length - 1; i >= 0; i--) {
-		if (!isspace(src[i])) {
+		trim_char_found = 0;
+		for(j = 0; j < sizeof(trim_chars); j++) {
+			if (src[i] == trim_chars[j]) {
+				trim_char_found = 1;
+				break;
+			}
+		}
+		if (!trim_char_found) {
 			src[i + 1] = '\0';
 			non_space_found = 1;
 			break;
@@ -111,10 +174,15 @@ void rtrim_ref(char src[]) {
 }
 
 void trim_ref(char src[]) {
-	ltrim_ref(src);
-	rtrim_ref(src);
+	trim_chars_ref(src, WHITESPACES);
 }
 
+void trim_chars_ref(char src[], const char trim_chars[]) {
+	ltrim_chars_ref(src, trim_chars);
+	rtrim_chars_ref(src, trim_chars);
+}
+
+// contrary trim functions
 char* ltrim_contrary(char* src) {
 	char* trimmed;
 	int i = 0, string_length = strlen(src), first_non_space_character_index = 0;

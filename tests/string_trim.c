@@ -9,7 +9,9 @@
 #include <stdlib.h>
 #include <CUnit/Basic.h>
 
+#ifndef TRIM_H
 #include "trim.h"
+#endif
 
 /*
  * CUnit Test Suite
