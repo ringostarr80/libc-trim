@@ -54,6 +54,49 @@ extern "C" {
      * @return char*
      */
 	void trim_ref(char src[]);
+	
+	/**
+	 * @Description\n
+	 * &nbsp;&nbsp;the ltrim() function trims src from leading whitespaces and returns a malloc'd char* pointer, so it must be free'd!
+	 * @param char* src
+     * @return char*
+     */
+	char* ltrim_contrary(char* src);
+	/**
+	 * @Description\n
+	 * &nbsp;&nbsp;the rtrim() function trims src from trailing whitespaces and returns a malloc'd char* pointer, so it must be free'd!
+	 * @param char* src
+     * @return char*
+     */
+	char* rtrim_contrary(char* src);
+	/**
+	 * @Description\n
+	 * &nbsp;&nbsp;the trim() function trims src from whitespaces and returns a malloc'd char* pointer, so it must be free'd!
+	 * @param char* src
+     * @return char*
+     */
+	char* trim_contrary(char* src);
+	/**
+	 * @Description\n
+	 * &nbsp;&nbsp;the ltrim_ref() function trims the given src from leading whitespaces!
+	 * @param char* src
+     * @return char*
+     */
+	void ltrim_contrary_ref(char src[]);
+	/**
+	 * @Description\n
+	 * &nbsp;&nbsp;the rtrim_ref() function trims the given src from trailing whitespaces!
+	 * @param char* src
+     * @return char*
+     */
+	void rtrim_contrary_ref(char src[]);
+	/**
+	 * @Description\n
+	 * &nbsp;&nbsp;the trim_ref() function trims the given src from whitespaces!
+	 * @param char* src
+     * @return char*
+     */
+	void trim_contrary_ref(char src[]);
 
 #ifdef	__cplusplus
 }
