@@ -107,6 +107,9 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libc-trim.${CND_DLIB_EXT}</output>
+        </linkerTool>
       </compileType>
       <packaging>
         <packType>Tar</packType>
