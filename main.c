@@ -22,4 +22,3 @@ int main(int argc, char** argv) {
 	free(output);
 	return (EXIT_SUCCESS);
 }
-

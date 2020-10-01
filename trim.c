@@ -12,16 +12,17 @@ char* ltrim(char* src) {
 	return ltrim_chars(src, WHITESPACES);
 }
 
-char* ltrim_chars(char* src, const char trim_chars[]) {
+char* ltrim_chars(char* src, char *trim_chars) {
 	char* trimmed;
 	int i = 0, j = 0, string_length = strlen(src), first_non_space_character_index = 0;
 	int non_space_found = 0, trim_char_found = 0;
 	
-	if (sizeof(trim_chars) > 0) {
+	size_t trim_chars_count = sizeof(trim_chars) / sizeof(char);
+	if (trim_chars_count > 0) {
 		for(i = 0; i < string_length; i++) {
 			first_non_space_character_index = i;
 			trim_char_found = 0;
-			for(j = 0; j < sizeof(trim_chars); j++) {
+			for(j = 0; j < trim_chars_count; j++) {
 				if (src[i] == trim_chars[j]) {
 					trim_char_found = 1;
 					break;
@@ -52,16 +53,17 @@ char* rtrim(char* src) {
 	return rtrim_chars(src, WHITESPACES);
 }
 
-char* rtrim_chars(char* src, const char trim_chars[]) {
+char* rtrim_chars(char* src, char *trim_chars) {
 	char* trimmed;
 	int i = 0, j = 0, string_length = strlen(src), last_non_space_character_index = 0;
 	int non_space_found = 0, trim_char_found = 0;
 	
-	if (sizeof(trim_chars) > 0) {
+	size_t trim_chars_count = sizeof(trim_chars) / sizeof(trim_chars[0]);
+	if (trim_chars_count > 0) {
 		for(i = string_length - 1; i >= 0; i--) {
 			last_non_space_character_index = i;
 			trim_char_found = 0;
-			for(j = 0; j < sizeof(trim_chars); j++) {
+			for(j = 0; j < trim_chars_count; j++) {
 				if (src[i] == trim_chars[j]) {
 					trim_char_found = 1;
 					break;
@@ -92,7 +94,7 @@ char* trim(char* src) {
 	return trim_chars(src, WHITESPACES);
 }
 
-char* trim_chars(char* src, const char trim_chars[]) {
+char* trim_chars(char* src, char *trim_chars) {
 	char* ltrimmed = ltrim_chars(src, trim_chars);
 	char* trimmed = rtrim_chars(ltrimmed, trim_chars);
 	free(ltrimmed);
@@ -103,18 +105,19 @@ void ltrim_ref(char src[]) {
 	ltrim_chars_ref(src, WHITESPACES);
 }
 
-void ltrim_chars_ref(char src[], const char trim_chars[]) {
+void ltrim_chars_ref(char src[], char *trim_chars) {
 	int i = 0, j = 0, string_length = strlen(src), first_non_space_character_index = 0;
 	int non_space_found = 0, trim_char_found = 0;
 	
-	if (sizeof(trim_chars) == 0) {
+	size_t trim_chars_count = sizeof(trim_chars) / sizeof(trim_chars[0]);
+	if (trim_chars_count == 0) {
 		return;
-	} // if (sizeof(trim_chars) == 0)
+	}
 	
 	for(i = 0; i < string_length; i++) {
 		first_non_space_character_index = i;
 		trim_char_found = 0;
-		for(j = 0; j < sizeof(trim_chars); j++) {
+		for(j = 0; j < trim_chars_count; j++) {
 			if (src[i] == trim_chars[j]) {
 				trim_char_found = 1;
 				break;
@@ -145,17 +148,18 @@ void rtrim_ref(char src[]) {
 	rtrim_chars_ref(src, WHITESPACES);
 }
 
-void rtrim_chars_ref(char src[], const char trim_chars[]) {
+void rtrim_chars_ref(char src[], char *trim_chars) {
 	int i = 0, j = 0, string_length = strlen(src);
 	int non_space_found = 0, trim_char_found = 0;
 	
-	if (sizeof(trim_chars) == 0) {
+	size_t trim_chars_count = sizeof(trim_chars) / sizeof(trim_chars[0]);
+	if (trim_chars_count == 0) {
 		return;
 	}
 	
 	for(i = string_length - 1; i >= 0; i--) {
 		trim_char_found = 0;
-		for(j = 0; j < sizeof(trim_chars); j++) {
+		for(j = 0; j < trim_chars_count; j++) {
 			if (src[i] == trim_chars[j]) {
 				trim_char_found = 1;
 				break;
@@ -177,7 +181,7 @@ void trim_ref(char src[]) {
 	trim_chars_ref(src, WHITESPACES);
 }
 
-void trim_chars_ref(char src[], const char trim_chars[]) {
+void trim_chars_ref(char src[], char *trim_chars) {
 	ltrim_chars_ref(src, trim_chars);
 	rtrim_chars_ref(src, trim_chars);
 }

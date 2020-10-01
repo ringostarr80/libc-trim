@@ -10,7 +10,7 @@
 #include <CUnit/Basic.h>
 
 #ifndef TRIM_H
-#include "trim.h"
+#include "../trim.h"
 #endif
 
 /*
