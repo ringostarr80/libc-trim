@@ -14,15 +14,17 @@ char* ltrim(char* src) {
 
 char* ltrim_chars(char* src, char *trim_chars) {
 	char* trimmed;
-	int i = 0, j = 0, string_length = strlen(src), first_non_space_character_index = 0;
-	int non_space_found = 0, trim_char_found = 0;
+	int string_length = strlen(src);
+	int first_non_space_character_index = 0;
+	int non_space_found = 0;
+	int trim_char_found = 0;
 	
 	size_t trim_chars_count = sizeof(&trim_chars) / sizeof(char);
 	if (trim_chars_count > 0) {
-		for(i = 0; i < string_length; i++) {
+		for(int i = 0; i < string_length; i++) {
 			first_non_space_character_index = i;
 			trim_char_found = 0;
-			for(j = 0; j < trim_chars_count; j++) {
+			for(int j = 0; j < trim_chars_count; j++) {
 				if (src[i] == trim_chars[j]) {
 					trim_char_found = 1;
 					break;
@@ -55,8 +57,10 @@ char* rtrim(char* src) {
 
 char* rtrim_chars(char* src, char *trim_chars) {
 	char* trimmed;
-	int string_length = strlen(src), last_non_space_character_index = 0;
-	int non_space_found = 0, trim_char_found = 0;
+	int string_length = strlen(src);
+	int last_non_space_character_index = 0;
+	int non_space_found = 0;
+	int trim_char_found = 0;
 	
 	size_t trim_chars_count = sizeof(&trim_chars) / sizeof(trim_chars[0]);
 	if (trim_chars_count > 0) {
@@ -106,8 +110,10 @@ void ltrim_ref(char src[]) {
 }
 
 void ltrim_chars_ref(char src[], char *trim_chars) {
-	int string_length = strlen(src), first_non_space_character_index = 0;
-	int non_space_found = 0, trim_char_found = 0;
+	int string_length = strlen(src);
+	int first_non_space_character_index = 0;
+	int non_space_found = 0;
+	int trim_char_found = 0;
 	
 	size_t trim_chars_count = sizeof(&trim_chars) / sizeof(trim_chars[0]);
 	if (trim_chars_count == 0) {
@@ -149,7 +155,7 @@ void rtrim_ref(char src[]) {
 }
 
 void rtrim_chars_ref(char src[], char *trim_chars) {
-	int i = 0, j = 0, string_length = strlen(src);
+	int string_length = strlen(src);
 	int non_space_found = 0, trim_char_found = 0;
 	
 	size_t trim_chars_count = sizeof(&trim_chars) / sizeof(trim_chars[0]);
@@ -157,9 +163,9 @@ void rtrim_chars_ref(char src[], char *trim_chars) {
 		return;
 	}
 	
-	for(i = string_length - 1; i >= 0; i--) {
+	for(int i = string_length - 1; i >= 0; i--) {
 		trim_char_found = 0;
-		for(j = 0; j < trim_chars_count; j++) {
+		for(int j = 0; j < trim_chars_count; j++) {
 			if (src[i] == trim_chars[j]) {
 				trim_char_found = 1;
 				break;
@@ -189,10 +195,11 @@ void trim_chars_ref(char src[], char *trim_chars) {
 // contrary trim functions
 char* ltrim_contrary(char* src) {
 	char* trimmed;
-	int i = 0, string_length = strlen(src), first_non_space_character_index = 0;
+	int string_length = strlen(src);
+	int first_non_space_character_index = 0;
 	int space_found = 0;
 	
-	for(i = 0; i < string_length; i++) {
+	for(int i = 0; i < string_length; i++) {
 		first_non_space_character_index = i;
 		if (isspace(src[i])) {
 			space_found = 1;
@@ -216,10 +223,11 @@ char* ltrim_contrary(char* src) {
 
 char* rtrim_contrary(char* src) {
 	char* trimmed;
-	int i = 0, string_length = strlen(src), last_non_space_character_index = 0;
+	int string_length = strlen(src);
+	int last_non_space_character_index = 0;
 	int space_found = 0;
 	
-	for(i = string_length - 1; i >= 0; i--) {
+	for(int i = string_length - 1; i >= 0; i--) {
 		last_non_space_character_index = i;
 		if (isspace(src[i])) {
 			space_found = 1;
@@ -249,10 +257,11 @@ char* trim_contrary(char* src) {
 }
 
 void ltrim_contrary_ref(char src[]) {
-	int i = 0, string_length = strlen(src), first_non_space_character_index = 0;
+	int string_length = strlen(src);
+	int first_non_space_character_index = 0;
 	int space_found = 0;
 	
-	for(i = 0; i < string_length; i++) {
+	for(int i = 0; i < string_length; i++) {
 		first_non_space_character_index = i;
 		if (isspace(src[i])) {
 			space_found = 1;
@@ -269,17 +278,17 @@ void ltrim_contrary_ref(char src[]) {
 	}
 	
 	int trimmed_length = string_length - first_non_space_character_index;
-	for(i = first_non_space_character_index; i < string_length; i++) {
+	for(int i = first_non_space_character_index; i < string_length; i++) {
 		src[i - first_non_space_character_index] = src[i];
 	}
 	src[trimmed_length] = '\0';
 }
 
 void rtrim_contrary_ref(char src[]) {
-	int i = 0, string_length = strlen(src);
+	int string_length = strlen(src);
 	int space_found = 0;
 	
-	for(i = string_length - 1; i >= 0; i--) {
+	for(int i = string_length - 1; i >= 0; i--) {
 		if (isspace(src[i])) {
 			src[i + 1] = '\0';
 			space_found = 1;
