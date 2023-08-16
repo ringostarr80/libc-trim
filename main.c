@@ -20,5 +20,5 @@ int main(int argc, char** argv) {
 	char* output = ltrim_chars(input, trim_chars);
 	printf("output: %s\n", output);
 	free(output);
-	return (EXIT_SUCCESS);
+	return EXIT_SUCCESS;
 }
