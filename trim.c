@@ -20,22 +20,25 @@ char* ltrim_chars(char* src, char *trim_chars) {
 	int trim_char_found = 0;
 	
 	size_t trim_chars_count = sizeof(&trim_chars) / sizeof(char);
-	if (trim_chars_count > 0) {
-		for(int i = 0; i < string_length; i++) {
-			first_non_space_character_index = i;
-			trim_char_found = 0;
-			for(int j = 0; j < trim_chars_count; j++) {
-				if (src[i] == trim_chars[j]) {
-					trim_char_found = 1;
-					break;
-				}
-			}
-			if (!trim_char_found) {
-				non_space_found = 1;
+	if (trim_chars_count == 0) {
+		return src;
+	}
+
+	for(int i = 0; i < string_length; i++) {
+		first_non_space_character_index = i;
+		trim_char_found = 0;
+		for(int j = 0; j < trim_chars_count; j++) {
+			if (src[i] == trim_chars[j]) {
+				trim_char_found = 1;
 				break;
 			}
 		}
+		if (!trim_char_found) {
+			non_space_found = 1;
+			break;
+		}
 	}
+
 	if (!non_space_found) {
 		first_non_space_character_index++;
 	}
