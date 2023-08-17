@@ -48,8 +48,12 @@ char* ltrim_chars(char* src, const char *trim_chars) {
 	if (trimmed == NULL) {
 		return src;
 	}
-	strncpy(trimmed, src + first_non_space_character_index, trimmed_length);
-	trimmed[trimmed_length] = '\0';
+	if (trimmed_length == 0) {
+		trimmed[0] = '\0';
+	} else {
+		strncpy(trimmed, src + first_non_space_character_index, trimmed_length);
+		trimmed[trimmed_length] = '\0';
+	}
 	
 	return trimmed;
 }
