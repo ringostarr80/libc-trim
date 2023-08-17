@@ -55,7 +55,7 @@ extern "C" {
 	 * @param char* src
      * @return char*
      */
-	char* trim_chars(char* src, char *trim_chars);
+	char* trim_chars(char* src, const char *trim_chars);
 	/**
 	 * @Description\n
 	 * &nbsp;&nbsp;the ltrim_ref() function trims the given src from leading whitespaces!
@@ -97,7 +97,7 @@ extern "C" {
 	 * @param char* src
      * @return char*
      */
-	void trim_chars_ref(char src[], char *trim_chars);
+	void trim_chars_ref(char src[], const char *trim_chars);
 	
 	/**
 	 * @Description\n

@@ -104,7 +104,7 @@ char* trim(char* src) {
 	return trim_chars(src, WHITESPACES);
 }
 
-char* trim_chars(char* src, char *trim_chars) {
+char* trim_chars(char* src, const char *trim_chars) {
 	char* ltrimmed = ltrim_chars(src, trim_chars);
 	char* trimmed = rtrim_chars(ltrimmed, trim_chars);
 	free(ltrimmed);
@@ -194,7 +194,7 @@ void trim_ref(char src[]) {
 	trim_chars_ref(src, WHITESPACES);
 }
 
-void trim_chars_ref(char src[], char *trim_chars) {
+void trim_chars_ref(char src[], const char *trim_chars) {
 	ltrim_chars_ref(src, trim_chars);
 	rtrim_chars_ref(src, trim_chars);
 }
