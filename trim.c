@@ -44,16 +44,21 @@ char* ltrim_chars(char* src, const char *trim_chars) {
 	}
 	
 	int trimmed_length = string_length - first_non_space_character_index;
+	if (trimmed_length == 0) {
+		trimmed = malloc(1);
+		if (trimmed == NULL) {
+			return src;
+		}
+		trimmed[0] = '\0';
+		return trimmed;
+	}
 	trimmed = malloc(trimmed_length + 1);
 	if (trimmed == NULL) {
 		return src;
 	}
-	if (trimmed_length == 0) {
-		trimmed[0] = '\0';
-	} else {
-		strncpy(trimmed, src + first_non_space_character_index, trimmed_length);
-		trimmed[trimmed_length] = '\0';
-	}
+
+	strncpy(trimmed, src + first_non_space_character_index, trimmed_length);
+	trimmed[trimmed_length] = '\0';
 	
 	return trimmed;
 }
