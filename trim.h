@@ -27,7 +27,7 @@ extern "C" {
 	 * @param char* src
      * @return char*
      */
-	char* ltrim_chars(char* src, char *trim_chars);
+	char* ltrim_chars(char* src, const char *trim_chars);
 	/**
 	 * @Description\n
 	 * &nbsp;&nbsp;the rtrim() function trims src from trailing whitespaces and returns a malloc'd char* pointer, so it must be free'd!
@@ -41,7 +41,7 @@ extern "C" {
 	 * @param char* src
      * @return char*
      */
-	char* rtrim_chars(char* src, char *trim_chars);
+	char* rtrim_chars(char* src, const char *trim_chars);
 	/**
 	 * @Description\n
 	 * &nbsp;&nbsp;the trim() function trims src from whitespaces and returns a malloc'd char* pointer, so it must be free'd!
@@ -69,7 +69,7 @@ extern "C" {
 	 * @param char* src
      * @return char*
      */
-	void ltrim_chars_ref(char src[], char *trim_chars);
+	void ltrim_chars_ref(char src[], const char *trim_chars);
 	/**
 	 * @Description\n
 	 * &nbsp;&nbsp;the rtrim_ref() function trims the given src from trailing whitespaces!
@@ -83,7 +83,7 @@ extern "C" {
 	 * @param char* src
      * @return char*
      */
-	void rtrim_chars_ref(char src[], char *trim_chars);
+	void rtrim_chars_ref(char src[], const char *trim_chars);
 	/**
 	 * @Description\n
 	 * &nbsp;&nbsp;the trim_ref() function trims the given src from whitespaces!
