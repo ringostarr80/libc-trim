@@ -19,7 +19,7 @@ char* ltrim_chars(char* src, char *trim_chars) {
 	int non_space_found = 0;
 	int trim_char_found = 0;
 	
-	size_t trim_chars_count = sizeof(&trim_chars) / sizeof(char);
+	size_t trim_chars_count = strlen(trim_chars) / sizeof(char);
 	if (trim_chars_count == 0) {
 		return src;
 	}
@@ -65,7 +65,7 @@ char* rtrim_chars(char* src, char *trim_chars) {
 	int non_space_found = 0;
 	int trim_char_found = 0;
 	
-	size_t trim_chars_count = sizeof(&trim_chars) / sizeof(trim_chars[0]);
+	size_t trim_chars_count = strlen(trim_chars) / sizeof(trim_chars[0]);
 	if (trim_chars_count == 0) {
 		return src;
 	}
@@ -121,7 +121,7 @@ void ltrim_chars_ref(char src[], char *trim_chars) {
 	int non_space_found = 0;
 	int trim_char_found = 0;
 	
-	size_t trim_chars_count = sizeof(&trim_chars) / sizeof(trim_chars[0]);
+	size_t trim_chars_count = strlen(trim_chars) / sizeof(trim_chars[0]);
 	if (trim_chars_count == 0) {
 		return;
 	}
@@ -165,7 +165,7 @@ void rtrim_chars_ref(char src[], char *trim_chars) {
 	int non_space_found = 0;
 	int trim_char_found = 0;
 	
-	size_t trim_chars_count = sizeof(&trim_chars) / sizeof(trim_chars[0]);
+	size_t trim_chars_count = strlen(trim_chars) / sizeof(trim_chars[0]);
 	if (trim_chars_count == 0) {
 		return;
 	}
