@@ -107,7 +107,11 @@ char* trim(char* src) {
 char* trim_chars(char* src, const char *trim_chars) {
 	char* ltrimmed = ltrim_chars(src, trim_chars);
 	char* trimmed = rtrim_chars(ltrimmed, trim_chars);
-	free(ltrimmed);
+
+	if (ltrimmed != trimmed) {
+		free(ltrimmed);
+	}
+
 	return trimmed;
 }
 
@@ -259,7 +263,11 @@ char* rtrim_contrary(char* src) {
 char* trim_contrary(char* src) {
 	char* ltrimmed = ltrim_contrary(src);
 	char* trimmed = rtrim_contrary(ltrimmed);
-	free(ltrimmed);
+
+	if (ltrimmed != trimmed) {
+		free(ltrimmed);
+	}
+
 	return trimmed;
 }
 
